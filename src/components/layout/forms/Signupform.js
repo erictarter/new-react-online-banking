@@ -155,6 +155,7 @@ const Signupform = () => {
           </Link>
         </div>
         {/* popup message */}
+        <div className='flex justify-center align-center'>
         <div
           className='message-container relative bg-white border border-red-400 rounded mb-5 hidden transform transition-transform duration-200 ease-out'
           id='message-container'
@@ -166,6 +167,7 @@ const Signupform = () => {
           <button className='exit-popup' id='exit-popup' onClick={removePopup}>
             <i className='fas fa-times'></i>
           </button>
+        </div>
         </div>
         {/* form */}
         <form action='' className='form' onSubmit={onSubmit} id='form'>

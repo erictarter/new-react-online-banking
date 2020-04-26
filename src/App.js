@@ -28,3 +28,7 @@ function App() {
 }
 
 export default App;
+
+// Add Spinners When Loading
+// remove form input outline
+// popup message x margin

@@ -1,6 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Context } from '../../context/Context';
+import { Link } from 'react-router-dom';
+import { link } from 'fs';
 
 const Loginform = () => {
   const [emailInput, setEmailInput] = useState('');
@@ -28,13 +30,47 @@ const Loginform = () => {
     }, 220);
   };
 
-  const onSubmit = e => {
-    e.preventDefault();
-    if (storageEmail === emailInput && storagePass === passwordInput) {
-      window.location.href = '/account';
+  const onChange = e => {
+    const linkToAccount = document.getElementById('link-to-account');
+    const change = document.getElementById('change');
+    const emailInput = document.getElementById('email');
+
+    setPasswordInput(e.target.value);
+
+    if (e.target.value === storagePass && emailInput.value === storageEmail) {
+      change.innerHTML = `
+      <div
+          class='link-to-account flex items-center justify-center'
+          id='link-to-account'
+        >
+        <a href='/account'>
+        <button
+        class='w-64 py-3 text-center mb-4 text-white bg-indigo-300 transition-colors duration-200 ease-out hover:bg-indigo-500 cursor-pointer border-none focus:outline-none'
+        id='log-on-btn'
+      >
+        Log in
+      </button>
+      </a>
+    </div>
+
+        `;
     } else {
+      linkToAccount.innerHTML = `
+      <button class='w-64 py-3 text-center mb-4 text-white bg-indigo-300 transition-colors duration-200 ease-out hover:bg-indigo-500 cursor-pointer border-none focus:outline-none no-log-in'
+      id='log-on-btn'
+    }>
+      Log in
+    </button>
+      `;
+    }
+  };
+
+  const onClick = e => {
+    e.preventDefault();
+    if (storageEmail !== emailInput || storagePass !== passwordInput) {
       setMessage('Email or Password do not Match Our Records..');
       popupMessage();
+    } else {
     }
   };
 
@@ -46,6 +82,7 @@ const Loginform = () => {
       >
         Sign In
       </div>
+      <div className='flex justify-center align-center'>
       <div
         className='message-container relative bg-white border border-red-400 rounded mb-5 hidden transform transition-transform duration-200 ease-out'
         id='message-container'
@@ -58,37 +95,42 @@ const Loginform = () => {
           <i className='fas fa-times'></i>
         </button>
       </div>
-      <form action='' className='form' onSubmit={onSubmit}>
-        <label htmlFor='email'>Email</label>
-        <div className='form-group'>
-          <input
-            type='email'
-            id='email'
-            placeholder='Enter Email'
-            onChange={e => {
-              setEmailInput(e.target.value);
-            }}
-          />
-        </div>
-        <label htmlFor='password'>Password </label>
-        <div className='form-group'>
-          <input
-            type='password'
-            id='password'
-            placeholder='Enter Password'
-            onChange={e => {
-              setPasswordInput(e.target.value);
-            }}
-          />
-        </div>
+      </div>
+
+      <label htmlFor='email'>Email</label>
+      <div className='form-group'>
         <input
-          type='submit'
-          name='Finish'
-          id='finish'
-          value='Log In'
-          className='py-3 text-white bg-indigo-300 transition-colors duration-200 ease-out hover:bg-indigo-500 cursor-pointer border-none focus:outline-none'
+          type='email'
+          id='email'
+          placeholder='Enter Email'
+          onChange={e => {
+            setEmailInput(e.target.value);
+          }}
         />
-      </form>
+      </div>
+      <label htmlFor='password'>Password </label>
+      <div className='form-group'>
+        <input
+          type='password'
+          id='password'
+          placeholder='Enter Password'
+          onChange={onChange}
+        />
+      </div>
+      <div className='change' id='change'>
+        <div
+          className='link-to-account flex items-center justify-center'
+          id='link-to-account'
+          onClick={onClick}
+        >
+          <button
+            className='w-64 py-3 text-center mb-4 text-white bg-indigo-300 transition-colors duration-200 ease-out hover:bg-indigo-500 cursor-pointer border-none focus:outline-none'
+            id='log-on-btn'
+          >
+            Log in
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
