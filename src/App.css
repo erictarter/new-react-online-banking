@@ -80,7 +80,7 @@ input {
   }
 }
 
-@media (max-width: 375px) {
+@media (max-width: 475px) {
   .select-transfer {
     font-size: 12px;
   }

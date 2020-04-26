@@ -25,6 +25,7 @@ const Account = () => {
   const [leavingInnerText, setLeavingInnerText] = useState('Savings');
   const [enteringInnerText, setEnteringInnerText] = useState('Checking');
   const [cap, setCap] = useState(0);
+  const [alertTxt, setAlertText] = useState('Insufficient Funds!');
   const [checkingAmount, setCheckingAmount] = useState(
     parseInt(localStorage.getItem('checking'))
   );
@@ -218,7 +219,15 @@ const Account = () => {
   };
 
   const alertMsg = () => {
+    const intTransferAmound = parseInt(transferAmount);
     const alertMsg = document.getElementById('alert-msg');
+
+    if (intTransferAmound < 0) {
+      setAlertText('Amount Must Be Above $0.00');
+    } else {
+      setAlertText('Insufficient Funds!');
+    }
+
     alertMsg.classList.remove('transform');
     setTimeout(() => {
       alertMsg.classList.add('transform');
@@ -397,7 +406,7 @@ const Account = () => {
             id='alert-msg'
           >
             <div className='exit-alert' id='exit alert'></div>
-            <div className='message text-xl'>Insufficient Funds!</div>
+            <div className='message text-xl'>{alertTxt}</div>
           </div>
 
           {/* CONFIRM TRANSACTION */}
@@ -470,6 +479,3 @@ const Account = () => {
 };
 
 export default Account;
-
-// REMOVE OUTLINE FORMS
-// BLOCK TRANSACTION IF AMOUNT EXCEEDS AMOUNT IN ACCOUNT - ADD POPUP TO BLOCK TRANSACTION - ALERT DOESNT WORK FOR MOBILE
