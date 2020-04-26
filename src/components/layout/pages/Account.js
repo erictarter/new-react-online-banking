@@ -212,8 +212,17 @@ const Account = () => {
     if (intTransferAmound > 0 && intTransferAmound <= cap) {
       confirmTransactionContainer.classList.remove('hidden');
     } else {
-      alert('Insufficient Funds!');
+      // alert('Insufficient Funds!');
+      alertMsg();
     }
+  };
+
+  const alertMsg = () => {
+    const alertMsg = document.getElementById('alert-msg');
+    alertMsg.classList.remove('transform');
+    setTimeout(() => {
+      alertMsg.classList.add('transform');
+    }, 2000);
   };
 
   const confirmTransaction = () => {
@@ -367,7 +376,7 @@ const Account = () => {
           <div className='transfer-amount text-2xl mb-2' id='transfer-amount'>
             <input
               id='input-value'
-              className='input-value px-2 my-2'
+              className='input-value px-2 my-2 focus:outline-none'
               type='number'
               placeholder='enter amount'
               onChange={e => {
@@ -381,6 +390,16 @@ const Account = () => {
           >
             Transfer Money
           </button>
+
+          {/*INSUFFICIENT FUNDS ALERT POPUP */}
+          <div
+            className='alert-message absolute top-0 flex justify-center items-center w-64 h-20 bg-red-400 text-white border border-gray-400 shadow-md transform scale-0 transition-transform duration-300 ease-out'
+            id='alert-msg'
+          >
+            <div className='exit-alert' id='exit alert'></div>
+            <div className='message text-xl'>Insufficient Funds!</div>
+          </div>
+
           {/* CONFIRM TRANSACTION */}
           <div
             className='confirm-transaction-container hidden absolute text-2xl flex justify-center items-center w-full h-full bg-white border-2 hidden'
@@ -452,5 +471,5 @@ const Account = () => {
 
 export default Account;
 
-// REMOVE OUTLINE FROM ALL BUTTONS FORMS
-// BLOCK TRANSACTION IF AMOUNT EXCEEDS AMOUNT IN ACCOUNT
+// REMOVE OUTLINE FORMS
+// BLOCK TRANSACTION IF AMOUNT EXCEEDS AMOUNT IN ACCOUNT - ADD POPUP TO BLOCK TRANSACTION - ALERT DOESNT WORK FOR MOBILE

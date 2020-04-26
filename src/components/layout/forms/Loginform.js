@@ -46,7 +46,6 @@ const Loginform = () => {
       formContainer.classList.add('hidden');
       accountLink.classList.remove('hidden');
       ghost.classList.remove('hidden');
-
     }
   };
 
@@ -84,6 +83,7 @@ const Loginform = () => {
         <label htmlFor='email'>Email</label>
         <div className='form-group'>
           <input
+            className='focus:outline-none'
             type='email'
             id='email'
             placeholder='Enter Email'
@@ -95,6 +95,7 @@ const Loginform = () => {
         <label htmlFor='password'>Password </label>
         <div className='form-group'>
           <input
+            className='focus:outline-none'
             type='password'
             id='password'
             placeholder='Enter Password'
@@ -121,7 +122,10 @@ const Loginform = () => {
         id='to-account'
       >
         <Link to='/account'>
-          <button className='py-5 px-10 border border-indigo-600 rounded text-lg bg-indigo-500 text-white transition-colors duration-200 ease-out hover:bg-white hover:text-indigo-600 hidden' id='account-link'>
+          <button
+            className='py-5 px-10 border border-indigo-600 rounded text-lg bg-indigo-500 text-white transition-colors duration-200 ease-out hover:bg-white hover:text-indigo-600 hidden'
+            id='account-link'
+          >
             Go To Account
           </button>
         </Link>

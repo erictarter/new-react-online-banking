@@ -156,24 +156,29 @@ const Signupform = () => {
         </div>
         {/* popup message */}
         <div className='flex justify-center align-center'>
-        <div
-          className='message-container relative bg-white border border-red-400 rounded mb-5 hidden transform transition-transform duration-200 ease-out'
-          id='message-container'
-        >
-          <div className='message text-red-400 text-center p-5' id='message'>
-            {message}
+          <div
+            className='message-container relative bg-white border border-red-400 rounded mb-5 hidden transform transition-transform duration-200 ease-out'
+            id='message-container'
+          >
+            <div className='message text-red-400 text-center p-5' id='message'>
+              {message}
+            </div>
+            {/* pop up dissapears when clicked */}
+            <button
+              className='exit-popup'
+              id='exit-popup'
+              onClick={removePopup}
+            >
+              <i className='fas fa-times'></i>
+            </button>
           </div>
-          {/* pop up dissapears when clicked */}
-          <button className='exit-popup' id='exit-popup' onClick={removePopup}>
-            <i className='fas fa-times'></i>
-          </button>
-        </div>
         </div>
         {/* form */}
         <form action='' className='form' onSubmit={onSubmit} id='form'>
           <label htmlFor='first'>First Name</label>
           <div className='form-group'>
             <input
+              className='focus:outline-none'
               type='text'
               id='first'
               placeholder='Enter First Name'
@@ -185,6 +190,7 @@ const Signupform = () => {
           <label htmlFor='last'>Last Name</label>
           <div className='form-group'>
             <input
+              className='focus:outline-none'
               type='text'
               id='last'
               placeholder='Enter Last Name'
@@ -196,6 +202,7 @@ const Signupform = () => {
           <label htmlFor='email'>Email</label>
           <div className='form-group'>
             <input
+              className='focus:outline-none'
               type='text'
               id='email'
               placeholder='Enter Email'
@@ -212,6 +219,7 @@ const Signupform = () => {
           </label>
           <div className='form-group'>
             <input
+              className='focus:outline-none'
               type='password'
               id='password'
               placeholder='Enter Password'
@@ -223,6 +231,7 @@ const Signupform = () => {
           <label htmlFor='password2'>Confirm Password</label>
           <div className='form-group'>
             <input
+              className='focus:outline-none'
               type='password'
               id='password2'
               placeholder='Confirm Password'

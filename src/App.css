@@ -94,4 +94,14 @@ input {
   .confirm-transaction-btn {
     font-size: 16px;
   }
+  .input-value {
+    width: 75%;
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .transfer-btn {
+    width: 50%;
+    font-size: 8px;
+  }
 }
