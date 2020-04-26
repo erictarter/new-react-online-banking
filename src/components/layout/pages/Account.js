@@ -24,6 +24,7 @@ const Account = () => {
   const [transferAmount, setTransferAmount] = useState(0);
   const [leavingInnerText, setLeavingInnerText] = useState('Savings');
   const [enteringInnerText, setEnteringInnerText] = useState('Checking');
+  const [cap, setCap] = useState(0);
   const [checkingAmount, setCheckingAmount] = useState(
     parseInt(localStorage.getItem('checking'))
   );
@@ -199,10 +200,19 @@ const Account = () => {
     const confirmTransactionContainer = document.getElementById(
       'confirm-transaction-container'
     );
+    const leaving = document.getElementById('leaving');
     const intTransferAmound = parseInt(transferAmount);
 
-    if (intTransferAmound > 0) {
+    if (leaving.innerText === 'Saving') {
+      setCap(savingsAmount);
+    } else {
+      setCap(checkingAmount);
+    }
+
+    if (intTransferAmound > 0 && intTransferAmound <= cap) {
       confirmTransactionContainer.classList.remove('hidden');
+    } else {
+      alert('Insufficient Funds!');
     }
   };
 
@@ -443,3 +453,4 @@ const Account = () => {
 export default Account;
 
 // REMOVE OUTLINE FROM ALL BUTTONS FORMS
+// BLOCK TRANSACTION IF AMOUNT EXCEEDS AMOUNT IN ACCOUNT
